@@ -18,29 +18,16 @@ public final class DatagenEntrypoint {
         var existingFileHelper = event.getExistingFileHelper();
         var lookupProvider = event.getLookupProvider();
 
-        var blockStateProvider = new FluxBlockStateProvider(packOutput, existingFileHelper);
-        generator.addProvider(event.includeClient(), blockStateProvider);
-
-        var itemModelProvider = new FluxItemModelProvider(packOutput, existingFileHelper);
-        generator.addProvider(event.includeClient(), itemModelProvider);
-
-        var languageProvider = new FluxLanguageProvider(packOutput);
-        generator.addProvider(event.includeClient(), languageProvider);
-
-        var lootTableProvider = new FluxLootTableProvider(packOutput);
-        generator.addProvider(event.includeServer(), lootTableProvider);
-
-        var recipeProvider = new FluxRecipeProvider(packOutput);
-        generator.addProvider(event.includeServer(), recipeProvider);
+        generator.addProvider(event.includeClient(), new FluxBlockStateProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new FluxItemModelProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new FluxLanguageProvider(packOutput));
 
         var tagProvider = new FluxTagProvider(packOutput, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), tagProvider);
 
-        var itemTagProvider = new FluxItemTagProvider(packOutput, lookupProvider, tagProvider.contentsGetter(), existingFileHelper);
-        generator.addProvider(event.includeServer(), itemTagProvider);
-
-        var advancementProvider = new FluxAdvancementProvider(packOutput, lookupProvider, existingFileHelper);
-        generator.addProvider(event.includeServer(), advancementProvider);
+        generator.addProvider(event.includeServer(), new FluxLootTableProvider(packOutput));
+        generator.addProvider(event.includeServer(), new FluxRecipeProvider(packOutput));
+        generator.addProvider(event.includeServer(), new FluxAdvancementProvider(packOutput, lookupProvider, existingFileHelper));
 
         var dataGeneratorManager = new DataGeneratorManager(generator, packOutput, existingFileHelper);
         dataGeneratorManager.registerAll();

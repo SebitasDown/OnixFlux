@@ -9,10 +9,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class FluxTableBER implements BlockEntityRenderer<FluxTableBlockEntity> {
 
     private static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(
@@ -37,10 +34,10 @@ public class FluxTableBER implements BlockEntityRenderer<FluxTableBlockEntity> {
         float halfSize = 0.4f;
         var m = poseStack.last().pose();
 
-        consumer.addVertex(m, -halfSize, 0, -halfSize).setColor(1, 1, 1, alpha).setUv(0, 0).setOverlay(packedOverlay).setLight(packedLight).setNormal(0, 1, 0);
-        consumer.addVertex(m, halfSize, 0, -halfSize).setColor(1, 1, 1, alpha).setUv(1, 0).setOverlay(packedOverlay).setLight(packedLight).setNormal(0, 1, 0);
-        consumer.addVertex(m, halfSize, 0, halfSize).setColor(1, 1, 1, alpha).setUv(1, 1).setOverlay(packedOverlay).setLight(packedLight).setNormal(0, 1, 0);
-        consumer.addVertex(m, -halfSize, 0, halfSize).setColor(1, 1, 1, alpha).setUv(0, 1).setOverlay(packedOverlay).setLight(packedLight).setNormal(0, 1, 0);
+        consumer.vertex(m, -halfSize, 0.0f, -halfSize).color(1.0f, 1.0f, 1.0f, alpha).uv(0.0f, 0.0f).overlayCoords(packedOverlay).uv2(packedLight).normal(0.0f, 1.0f, 0.0f).endVertex();
+        consumer.vertex(m, halfSize, 0.0f, -halfSize).color(1.0f, 1.0f, 1.0f, alpha).uv(1.0f, 0.0f).overlayCoords(packedOverlay).uv2(packedLight).normal(0.0f, 1.0f, 0.0f).endVertex();
+        consumer.vertex(m, halfSize, 0.0f, halfSize).color(1.0f, 1.0f, 1.0f, alpha).uv(1.0f, 1.0f).overlayCoords(packedOverlay).uv2(packedLight).normal(0.0f, 1.0f, 0.0f).endVertex();
+        consumer.vertex(m, -halfSize, 0.0f, halfSize).color(1.0f, 1.0f, 1.0f, alpha).uv(0.0f, 1.0f).overlayCoords(packedOverlay).uv2(packedLight).normal(0.0f, 1.0f, 0.0f).endVertex();
 
         poseStack.popPose();
     }

@@ -4,7 +4,9 @@ import com.sebitas.onixflux.OnixFlux;
 import com.sebitas.onixflux.registry.ModBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,7 +20,7 @@ public class FluxTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.FLUX_TABLE.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModBlocks.FLUX_TABLE.get());
     }
 
 }

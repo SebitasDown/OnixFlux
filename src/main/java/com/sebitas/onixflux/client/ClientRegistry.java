@@ -19,7 +19,7 @@ public final class ClientRegistry {
 
     public static final KeyMapping TOGGLE_HUD = new KeyMapping(
             "key.onixflux.open_hud",
-            GLFW.GLFW_KEY_FX,
+            GLFW.GLFW_KEY_F12,
             "key.categories.onixflux"
     );
 

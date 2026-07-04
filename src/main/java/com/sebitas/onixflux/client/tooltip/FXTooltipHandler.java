@@ -34,7 +34,7 @@ public final class FXTooltipHandler {
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        boolean isLearned = PlayerDataManager.isItemLearned(player, stack.getItem());
+        boolean isLearned = PlayerDataManager.knows(player, stack.getItem());
 
         event.getToolTip().add(Component.literal(""));
         event.getToolTip().add(Component.translatable("tooltip.onixflux.fx_value", value.get().value())

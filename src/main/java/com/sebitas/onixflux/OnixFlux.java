@@ -5,7 +5,7 @@ import com.sebitas.onixflux.client.ClientInitializer;
 import com.sebitas.onixflux.client.particle.ModParticles;
 import com.sebitas.onixflux.config.ConfigManager;
 import com.sebitas.onixflux.fx.FluxBootstrap;
-import com.sebitas.onixflux.fx.FluxLoader;
+import com.sebitas.onixflux.integration.IntegrationManager;
 import com.sebitas.onixflux.network.NetworkManager;
 import com.sebitas.onixflux.player.PlayerCapabilityAttacher;
 import com.sebitas.onixflux.player.PlayerDataEvents;
@@ -51,6 +51,7 @@ public class OnixFlux {
         FluxBootstrap.bootstrap();
         FluxAPI.initialize();
         NetworkManager.initialize();
+        IntegrationManager.initialize();
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientInitializer::initialize);
     }
@@ -58,6 +59,7 @@ public class OnixFlux {
     private void onCommonSetup(FMLCommonSetupEvent event) {
         FluxBootstrap.loadConfig();
         ConfigManager.onCommonSetup(event);
+        IntegrationManager.onCommonSetup(event);
     }
 
     @SubscribeEvent

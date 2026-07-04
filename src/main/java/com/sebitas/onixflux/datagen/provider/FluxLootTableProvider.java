@@ -2,6 +2,7 @@ package com.sebitas.onixflux.datagen.provider;
 
 import com.sebitas.onixflux.OnixFlux;
 import com.sebitas.onixflux.registry.ModBlocks;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.LootTableProvider.SubProviderEntry;

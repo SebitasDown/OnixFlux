@@ -1,6 +1,7 @@
 package com.sebitas.onixflux.config;
 
 import com.sebitas.onixflux.OnixFlux;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

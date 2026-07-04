@@ -7,6 +7,7 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.advancements.AdvancementProvider;
+import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
@@ -19,10 +20,10 @@ import java.util.function.Consumer;
 public class FluxAdvancementProvider extends AdvancementProvider {
 
     public FluxAdvancementProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, existingFileHelper, List.of(new FluxAdvancements()));
+        super(output, lookupProvider, List.of(new FluxAdvancements()));
     }
 
-    private static class FluxAdvancements implements AdvancementProvider.AdvancementGenerator {
+    private static class FluxAdvancements implements AdvancementSubProvider {
 
         @Override
         public void generate(HolderLookup.Provider provider, Consumer<Advancement> writer) {

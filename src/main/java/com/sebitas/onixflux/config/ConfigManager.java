@@ -22,7 +22,7 @@ public final class ConfigManager {
         initialized = true;
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FluxLoader.configSpec());
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FluxLoader.configSpec(), "onixflux-custom-values.toml");
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
 

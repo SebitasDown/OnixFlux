@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.sebitas.onixflux.OnixFlux;
 import com.sebitas.onixflux.config.FluxConfigDiagnostics;
+import com.sebitas.onixflux.config.ServerConfig;
 import com.sebitas.onixflux.fx.FluxEngine;
 import com.sebitas.onixflux.fx.FluxSource;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -32,6 +33,9 @@ public class FluxDataPackReloadListener extends SimplePreparableReloadListener<L
 
     @Override
     protected List<FluxValueJsonEntry> prepare(ResourceManager manager, ProfilerFiller profiler) {
+        if (!ServerConfig.ENABLE_DATAPACK_VALUES.get()) {
+            return List.of();
+        }
         List<FluxValueJsonEntry> allEntries = new ArrayList<>();
         Map<ResourceLocation, Resource> resources = manager.listResources(PATH, loc -> loc.getPath().endsWith(".json"));
         for (Map.Entry<ResourceLocation, Resource> entry : resources.entrySet()) {

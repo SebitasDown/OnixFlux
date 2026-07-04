@@ -1,6 +1,5 @@
 package com.sebitas.onixflux.config.datapack;
 
-import com.sebitas.onixflux.config.ServerConfig;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -14,9 +13,7 @@ public final class FluxDataPackLoader {
 
     @SubscribeEvent
     public static void onAddReloadListeners(AddReloadListenerEvent event) {
-        if (ServerConfig.ENABLE_DATAPACK_VALUES.get()) {
-            event.addListener(RELOAD_LISTENER);
-        }
+        event.addListener(RELOAD_LISTENER);
     }
 
     public static FluxDataPackReloadListener listener() {

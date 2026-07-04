@@ -41,7 +41,7 @@ public class OnixFlux {
         ModParticles.PARTICLE_TYPES.register(modBus);
 
         MinecraftForge.EVENT_BUS.addListener(this::onServerAboutToStart);
-        MinecraftForge.EVENT_BUS.addListener(PlayerCapabilityAttacher::onAttach);
+        MinecraftForge.EVENT_BUS.addGenericListener(net.minecraft.world.entity.Entity.class, PlayerCapabilityAttacher::onAttach);
         MinecraftForge.EVENT_BUS.addListener(PlayerCapabilityAttacher::onPlayerClone);
         MinecraftForge.EVENT_BUS.addListener(PlayerDataEvents::onPlayerLogin);
         MinecraftForge.EVENT_BUS.addListener(PlayerDataEvents::onPlayerChangedDimension);

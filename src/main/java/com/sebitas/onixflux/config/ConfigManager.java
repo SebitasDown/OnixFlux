@@ -1,6 +1,7 @@
 package com.sebitas.onixflux.config;
 
 import com.sebitas.onixflux.OnixFlux;
+import com.sebitas.onixflux.fx.FluxLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -21,6 +22,7 @@ public final class ConfigManager {
         initialized = true;
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FluxLoader.configSpec());
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
 

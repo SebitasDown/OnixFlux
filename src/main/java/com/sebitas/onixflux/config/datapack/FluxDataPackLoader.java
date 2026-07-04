@@ -5,7 +5,7 @@ import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = "onixflux")
+@Mod.EventBusSubscriber(modid = "onixflux", bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class FluxDataPackLoader {
 
     private static final FluxDataPackReloadListener RELOAD_LISTENER = new FluxDataPackReloadListener();

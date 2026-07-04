@@ -6,7 +6,8 @@ public enum FluxSource {
     CALCULATED(1),
     API(2),
     CONFIG(3),
-    DATAPACK(4);
+    DATAPACK(4),
+    COMMAND(5);
 
     private final int priority;
 

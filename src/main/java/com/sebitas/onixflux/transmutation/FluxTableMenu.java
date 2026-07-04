@@ -2,6 +2,7 @@ package com.sebitas.onixflux.transmutation;
 
 import com.sebitas.onixflux.fx.FluxEngine;
 import com.sebitas.onixflux.registry.ModMenuTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -37,7 +38,19 @@ public class FluxTableMenu extends AbstractContainerMenu {
     }
 
     public FluxTableMenu(int id, Inventory inv, FriendlyByteBuf buf) {
-        this(id, inv, (FluxTableBlockEntity) inv.player.level().getBlockEntity(buf.readBlockPos()));
+        this(id, inv, resolveBlockEntity(inv.player, buf));
+    }
+
+    private static FluxTableBlockEntity resolveBlockEntity(Player player, FriendlyByteBuf buf) {
+        BlockPos pos;
+        if (buf != null) {
+            pos = buf.readBlockPos();
+        } else {
+            pos = FluxTableBlock.lastInteractedPos;
+        }
+        if (pos == null) return null;
+        var be = player.level().getBlockEntity(pos);
+        return be instanceof FluxTableBlockEntity fbe ? fbe : null;
     }
 
     public FluxTableBlockEntity getBlockEntity() {

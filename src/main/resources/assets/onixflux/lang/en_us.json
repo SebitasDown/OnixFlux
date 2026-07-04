@@ -21,5 +21,19 @@
   "category.onixflux.ores": "Ores",
   "category.onixflux.redstone": "Redstone",
   "category.onixflux.nature": "Nature",
-  "category.onixflux.misc": "Misc"
+  "category.onixflux.misc": "Misc",
+
+  "itemGroup.onixflux": "OnixFlux",
+
+  "command.onixflux.give.success": "Gave %s",
+  "command.onixflux.give.multiple": "Gave Flux Table to %s players",
+  "command.onixflux.learn.success": "Learned %s",
+  "command.onixflux.learn.multiple": "Learned %s for %s players",
+  "command.onixflux.value.removed": "Removed FX value for %s",
+  "command.onixflux.value.set": "Set FX value of %s to %s",
+  "command.onixflux.reload.success": "Config reloaded",
+  "command.onixflux.clear.success": "Cleared learned items",
+  "command.onixflux.clear.multiple": "Cleared learned items for %s players",
+  "command.onixflux.query.count": "Total FX values registered: %s",
+  "command.onixflux.query.item": "%s = %s FX (%s)"
 }

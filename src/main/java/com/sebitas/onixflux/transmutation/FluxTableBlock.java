@@ -22,6 +22,8 @@ public class FluxTableBlock extends Block implements EntityBlock {
 
     private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 14.0, 16.0);
 
+    public static BlockPos lastInteractedPos;
+
     public FluxTableBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion().strength(2.5f));
     }
@@ -33,7 +35,10 @@ public class FluxTableBlock extends Block implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (level.isClientSide) return InteractionResult.SUCCESS;
+        if (level.isClientSide) {
+            lastInteractedPos = pos;
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
 
         FluxTableManager.openTable(player, pos);
         return InteractionResult.CONSUME;

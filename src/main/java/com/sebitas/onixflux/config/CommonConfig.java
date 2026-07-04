@@ -12,6 +12,7 @@ public final class CommonConfig {
 
     public static final ForgeConfigSpec SPEC;
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> CUSTOM_VALUES;
+    public static final ForgeConfigSpec.BooleanValue ENABLE_DATAPACK_VALUES;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -20,6 +21,12 @@ public final class CommonConfig {
                 .push("fx_values");
         CUSTOM_VALUES = builder
                 .defineListAllowEmpty("custom_values", List.of(), CommonConfig::validateEntry);
+        builder.pop();
+
+        builder.comment("Data pack settings").push("datapack");
+        ENABLE_DATAPACK_VALUES = builder
+                .comment("Load FX values from data packs")
+                .define("enable_datapack_values", true);
         builder.pop();
 
         SPEC = builder.build();

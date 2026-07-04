@@ -1,27 +1,29 @@
 package com.sebitas.onixflux;
 
 import com.sebitas.onixflux.api.FluxAPI;
-import com.sebitas.onixflux.client.ClientInitializer;
+import com.sebitas.onixflux.client.ClientEventHandler;
 import com.sebitas.onixflux.client.particle.ModParticles;
 import com.sebitas.onixflux.config.ConfigManager;
 import com.sebitas.onixflux.fx.FluxBootstrap;
+import com.sebitas.onixflux.command.OnixFluxCommand;
 import com.sebitas.onixflux.integration.IntegrationManager;
 import com.sebitas.onixflux.network.NetworkManager;
 import com.sebitas.onixflux.player.PlayerCapabilityAttacher;
 import com.sebitas.onixflux.player.PlayerDataEvents;
 import com.sebitas.onixflux.registry.ModBlocks;
 import com.sebitas.onixflux.registry.ModBlockEntities;
+import com.sebitas.onixflux.registry.ModCreativeTabs;
 import com.sebitas.onixflux.registry.ModItems;
 import com.sebitas.onixflux.registry.ModMenuTypes;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 @Mod(OnixFlux.MOD_ID)
 public class OnixFlux {
@@ -38,9 +40,15 @@ public class OnixFlux {
         ModItems.ITEMS.register(modBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modBus);
         ModMenuTypes.MENUS.register(modBus);
+        ModCreativeTabs.TABS.register(modBus);
         ModParticles.PARTICLE_TYPES.register(modBus);
 
+        if (FMLEnvironment.dist.isClient()) {
+            modBus.register(ClientEventHandler.class);
+        }
+
         MinecraftForge.EVENT_BUS.addListener(this::onServerAboutToStart);
+        MinecraftForge.EVENT_BUS.addListener(this::onRegisterCommands);
         MinecraftForge.EVENT_BUS.addGenericListener(net.minecraft.world.entity.Entity.class, PlayerCapabilityAttacher::onAttach);
         MinecraftForge.EVENT_BUS.addListener(PlayerCapabilityAttacher::onPlayerClone);
         MinecraftForge.EVENT_BUS.addListener(PlayerDataEvents::onPlayerLogin);
@@ -52,8 +60,6 @@ public class OnixFlux {
         FluxAPI.initialize();
         NetworkManager.initialize();
         IntegrationManager.initialize();
-
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientInitializer::initialize);
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event) {
@@ -69,6 +75,10 @@ public class OnixFlux {
     private void onServerAboutToStart(ServerAboutToStartEvent event) {
         var server = event.getServer();
         FluxBootstrap.finalize(server.getRecipeManager(), server.registryAccess());
+    }
+
+    private void onRegisterCommands(RegisterCommandsEvent event) {
+        OnixFluxCommand.register(event.getDispatcher(), event.getBuildContext());
     }
 
 }

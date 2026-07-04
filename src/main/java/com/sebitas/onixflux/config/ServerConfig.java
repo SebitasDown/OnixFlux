@@ -9,9 +9,8 @@ public final class ServerConfig {
     public static final ForgeConfigSpec SPEC;
     public static final ForgeConfigSpec.BooleanValue ENABLE_AUTO_RELOAD;
     public static final ForgeConfigSpec.IntValue AUTO_RELOAD_INTERVAL;
-    public static final ForgeConfigSpec.BooleanValue ENABLE_DATAPACK_VALUES;
     public static final ForgeConfigSpec.BooleanValue LOG_REGISTRATION;
-    public static final ForgeConfigSpec.ConfigValue<Integer> SEARCH_RESULTS;
+    public static final ForgeConfigSpec.IntValue SEARCH_RESULTS;
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -28,13 +27,7 @@ public final class ServerConfig {
                 .define("log_registration", FluxConfigDefaults.DEFAULT_LOG_REGISTRATION);
         SEARCH_RESULTS = builder
                 .comment("Maximum search results per page")
-                .define("search_results", FluxConfigDefaults.DEFAULT_SEARCH_RESULTS, v -> (int) v >= 1 && (int) v <= 256);
-        builder.pop();
-
-        builder.comment("Data pack settings").push("datapack");
-        ENABLE_DATAPACK_VALUES = builder
-                .comment("Load FX values from data packs")
-                .define("enable_datapack_values", FluxConfigDefaults.DEFAULT_ENABLE_DATAPACK_VALUES);
+                .defineInRange("search_results", FluxConfigDefaults.DEFAULT_SEARCH_RESULTS, 1, 256);
         builder.pop();
 
         SPEC = builder.build();

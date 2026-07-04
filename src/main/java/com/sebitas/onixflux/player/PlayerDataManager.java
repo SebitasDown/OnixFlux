@@ -82,4 +82,13 @@ public final class PlayerDataManager {
         return get(player).learnedCount();
     }
 
+    public static void clearLearned(Player player) {
+        PlayerCapability data = get(player);
+        Set<Item> items = Set.copyOf(data.getLearnedItems());
+        for (Item item : items) {
+            data.forget(item);
+        }
+        PlayerSyncManager.syncKnowledge(player);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.sebitas.onixflux.config;
 
 import com.sebitas.onixflux.OnixFlux;
+import com.sebitas.onixflux.fx.FluxEngine;
 import com.sebitas.onixflux.fx.FluxLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -43,6 +44,13 @@ public final class ConfigManager {
 
     public static void shutdown() {
         ConfigWatcher.stop();
+    }
+
+    public static void reload() {
+        LOGGER.info("Reloading configuration...");
+        FluxEngine.reload();
+        ConfigLoader.loadAll();
+        LOGGER.info("Configuration reloaded");
     }
 
 }

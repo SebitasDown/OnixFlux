@@ -1,0 +1,25 @@
+{
+  "block.onixflux.flux_table": "Flux Table",
+
+  "container.onixflux.flux_table": "Flux Table",
+
+  "gui.onixflux.search": "Search items...",
+  "gui.onixflux.fx": "FX: %s",
+  "gui.onixflux.value": "Value: %s FX",
+  "gui.onixflux.no_selection": "No selection",
+  "gui.onixflux.learn_slot": "Learn",
+  "gui.onixflux.output_slot": "Output",
+  "gui.onixflux.learn": "Learn",
+  "gui.onixflux.transmute": "Transmute",
+
+  "category.onixflux.all": "All",
+  "category.onixflux.blocks": "Blocks",
+  "category.onixflux.tools": "Tools",
+  "category.onixflux.weapons": "Weapons",
+  "category.onixflux.armor": "Armor",
+  "category.onixflux.food": "Food",
+  "category.onixflux.ores": "Ores",
+  "category.onixflux.redstone": "Redstone",
+  "category.onixflux.nature": "Nature",
+  "category.onixflux.misc": "Misc"
+}

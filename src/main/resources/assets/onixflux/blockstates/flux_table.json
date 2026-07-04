@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "onixflux:block/flux_table"
+    }
+  }
+}

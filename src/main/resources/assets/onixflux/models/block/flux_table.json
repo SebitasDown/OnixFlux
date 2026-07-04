@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "minecraft:block/enchanting_table_side",
+    "down": "minecraft:block/enchanting_table_bottom",
+    "up": "minecraft:block/enchanting_table_top",
+    "north": "onixflux:block/flux_table_side",
+    "south": "onixflux:block/flux_table_side",
+    "east": "onixflux:block/flux_table_side",
+    "west": "onixflux:block/flux_table_side"
+  }
+}
